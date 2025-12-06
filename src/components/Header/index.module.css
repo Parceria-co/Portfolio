@@ -1,0 +1,9 @@
+.container {
+    width: 100vw;
+    height: 100px;
+    border: 2px solid red;
+}
+
+.wrapper_ul {
+    display: flex;
+}

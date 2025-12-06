@@ -1,0 +1,91 @@
+.container {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    
+    background-color: transparent;
+    
+    width: 100vw;
+}
+
+.background_changed {
+    background-color: black;
+}
+
+.wrapper_ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+
+    padding: 8px;
+}
+
+.logo {
+    border: 4px solid rgb(230, 157, 63);
+    border-radius: 50%;
+
+    width: 48px;
+    height: 48px;
+
+    position: relative;
+
+    transition: all .3s;
+    /* overflow: hidden; */
+}
+
+.logo:hover, 
+.logo:focus {
+    cursor: pointer;
+    transform: scale(1.14);
+}
+
+.logo_inactive {  
+    transform: translateY(24px) scale(1.2);
+    opacity: 0.5;
+}
+
+.logo::after {
+    /* content: "";
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    
+    border-radius: 50%;
+    border: 4px solid transparent;
+    
+    height: 4px;
+    width: 80%;
+
+    transform: translateX(5px);
+
+    box-shadow: 0 0 8px 3px rgb(255, 255, 255); */
+
+    /* animation: shine 2s infinite; */
+}
+
+.logo img {
+    object-fit: cover;
+    object-position: center;
+    
+    width: 100%;
+    
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
+@keyframes shine {
+    0% {
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: rotate(45deg) scale(1.1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(360deg);
+    }
+}
