@@ -95,7 +95,7 @@ export default function Navbar() {
                         {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
                     ].map((it, idx) => (
                         <li className={`${styles.item} ${styles["pos"+idx]}`}>
-                            <a href={it.href} title={it.label}>{it.label}</a>
+                            <a href={it.href} title={it.label}>{it.icon}</a>
                         </li>
                     ))
                 }
