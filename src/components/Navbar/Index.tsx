@@ -31,8 +31,8 @@ export default function Navbar() {
         setShowCircleMenu(true);
 
         timerRef.current = setTimeout(() => {
-            // setInactiveButton(true);
-            // setShowCircleMenu(false);
+            setInactiveButton(true);
+            setShowCircleMenu(false);
         }, 5000);
     };
 
@@ -43,6 +43,13 @@ export default function Navbar() {
 
         alert("botão ta zero");
     }
+
+    const links = [
+        {href: "/servicos", label: "Serviços", icon: <Wrench />},
+        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
+        {href: "/contatos", label: "Contatos", icon: <Phone />},
+        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
+    ];
 
     // Faz a logo sumir após 5 segundos que abriu a tela
     useEffect(() => {
@@ -56,7 +63,7 @@ export default function Navbar() {
         const handleScroll = () => {
             const scrolled = window.scrollY;
 
-            if (scrolled > navbarHeight * 4) {
+            if (scrolled > navbarHeight) {
                 setChangeBackground(true);
             } else {
                 setChangeBackground(false);
@@ -79,27 +86,25 @@ export default function Navbar() {
     return (
         <nav
             ref={containerRef} 
-            className={`${styles.container} ${changeBackground ? styles.background_changed : ""}`}
+            className={`
+                ${styles.container} 
+                ${!inactiveButton ? styles.background_changed : ""}
+            `}
         >
             <ul     
                 className={`
                     ${styles.wrapper_ul}
-                    ${showCircleMenu ? styles.circle_active : ""}
+                    ${!showCircleMenu ? styles.center_ul : ""}
                 `}
             >
                 {
-                    [
-                        {href: "/servicos", label: "Serviços", icon: <Wrench />},
-                        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
-                        {href: "/contatos", label: "Contatos", icon: <Phone />},
-                        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
-                    ].map((it, idx) => (
+                    showCircleMenu && links && links.slice(0, 2).map((it, idx) => (
                         <li className={`${styles.item} ${styles["pos"+idx]}`}>
                             <a href={it.href} title={it.label}>{it.icon}</a>
                         </li>
                     ))
                 }
-                <li>
+                <li className={styles.li_button}>
                     <button 
                         className={`${styles.logo} ${inactiveButton ? styles.logo_inactive : ""}`}
                         onMouseEnter={startLoop}
@@ -109,6 +114,13 @@ export default function Navbar() {
                         <img src="/public/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
                     </button>
                 </li>
+                {
+                    showCircleMenu && links && links.slice(2, 4).map((it, idx) => (
+                        <li className={`${styles.item} ${styles["pos"+idx]}`}>
+                            <a href={it.href} title={it.label}>{it.icon}</a>
+                        </li>
+                    ))
+                }
             </ul>
         </nav>
     )
