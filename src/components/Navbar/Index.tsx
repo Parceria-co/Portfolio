@@ -1,19 +1,24 @@
+import { Sparkles, Wrench, Phone, ArrowBigRight, icons } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
+import { href } from "react-router-dom";
 
 export default function Navbar() {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
+
     const [navbarHeight, setNavbarHeight] = useState(0);
     const [changeBackground, setChangeBackground] = useState(false);
     const [inactiveButton, setInactiveButton] = useState(false);
-    
+    const [showCircleMenu, setShowCircleMenu] = useState(false);
+
     const timerRef = useRef<number | null>(null);
 
 
     // inicia o loop de chamada
     const startLoop = () => {
         setInactiveButton(false);
+        setShowCircleMenu(true);
     };
 
      const stopLoop = () => {
@@ -23,13 +28,16 @@ export default function Navbar() {
     const resetTimer = () => {
         if (timerRef.current) clearTimeout(timerRef.current);
         setInactiveButton(false);
+        setShowCircleMenu(true);
 
         timerRef.current = setTimeout(() => {
-            setInactiveButton(true);
+            // setInactiveButton(true);
+            // setShowCircleMenu(false);
         }, 5000);
     };
 
     const handleInteraction = () => {
+        
         resetTimer();
         if (inactiveButton) return
 
@@ -73,13 +81,24 @@ export default function Navbar() {
             ref={containerRef} 
             className={`${styles.container} ${changeBackground ? styles.background_changed : ""}`}
         >
-            <ul className={styles.wrapper_ul}>
-                {/* <li>
-                    <a href=""></a>
-                </li>
-                <li>
-                    <a href=""></a>
-                </li> */}
+            <ul     
+                className={`
+                    ${styles.wrapper_ul}
+                    ${showCircleMenu ? styles.circle_active : ""}
+                `}
+            >
+                {
+                    [
+                        {href: "/servicos", label: "Serviços", icon: <Wrench />},
+                        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
+                        {href: "/contatos", label: "Contatos", icon: <Phone />},
+                        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
+                    ].map((it, idx) => (
+                        <li className={`${styles.item} ${styles["pos"+idx]}`}>
+                            <a href={it.href} title={it.label}>{it.label}</a>
+                        </li>
+                    ))
+                }
                 <li>
                     <button 
                         className={`${styles.logo} ${inactiveButton ? styles.logo_inactive : ""}`}
@@ -90,12 +109,6 @@ export default function Navbar() {
                         <img src="/public/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
                     </button>
                 </li>
-                {/* <li>
-                    <a href=""></a>
-                </li>
-                <li>
-                    <a href=""></a>
-                </li> */}
             </ul>
         </nav>
     )
