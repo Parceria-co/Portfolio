@@ -82,7 +82,7 @@ export default function Navbar() {
                         onMouseLeave={stopLoop}
                         onClick={handleInteraction}
                     >
-                        <img src="/public/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
+                        <img src="/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
                     </button>
                 </li>
                 {
