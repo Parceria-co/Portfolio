@@ -83,6 +83,10 @@ export default function Home() {
             <main>
                 <section className={styles.banner}>
                     <img draggable={false} src="/assets/florest.jpeg" alt="banner" />
+                    <div className={styles.logo}>
+                        <img src="ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
+                        <h1>Parceria Company</h1>
+                    </div>
                 </section>
                 <section 
                     id="aboutUs"
@@ -100,16 +104,47 @@ export default function Home() {
                             </a>
                         </span>
                     </div>}
+
                     <div className={styles.text}>
                         <p>
-                            A Parceria Company nasceu da união de duas mentes ambiciosas, 
-                            focadas em criar soluções práticas para problemas reais. 
-                            Nossa essência está em transformar boas ideias em resultados, 
-                            conectando pessoas, empresas e oportunidades.
+                            A <span className={styles.highlight_text}>Parceria Company </span> 
+                            nasceu da união de duas mentes ambiciosas, focadas em criar 
+                            soluções práticas para problemas reais. Nossa essência está 
+                            em transformar boas ideias em resultados, conectando pessoas, 
+                            empresas e oportunidades.
                         </p>
                         <p>
                             Trabalhamos com visão estratégica, mentalidade de crescimento 
                             e foco absoluto no sucesso dos nossos parceiros.
+                        </p>
+                    </div>
+                </section>
+                    
+                <div className={styles.divisor}></div>
+                    
+                <section className={styles.highlight}>
+                    <div className={styles.mission}>
+                        <h2>Missão</h2>
+                        <p>
+                            Criar soluções inteligentes que resolvam problemas reais, 
+                            entregando resultados expressivos e <span className={styles.highlight_text}>
+                                retorno acelerado para
+                                nossos clientes.
+                            </span> Acreditamos em inovação, estratégia e ação.
+                        </p>
+                    </div>
+                    <div className={styles.vision}>
+                        <h2>Visão</h2>
+                        <p>
+                            Ser referência em <span className={styles.highlight_text}>soluções práticas</span> e parcerias estratégicas, 
+                            unindo forças para <span className={styles.highlight_text}>fortalecer empresas</span> e torná-las mais 
+                            independentes e competitivas.
+                        </p>
+                    </div>
+                    <div className={styles.value}>
+                        <h2>Valores</h2>
+                        <p>
+                            <span className={styles.highlight_text}>Inovação</span> - Atitude - <span className={styles.highlight_text}>Estratégia</span> - Criatividade - Aprendizado - <span className={styles.highlight_text}>Fé</span>
                         </p>
                     </div>
                 </section>
