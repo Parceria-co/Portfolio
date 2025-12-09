@@ -1,14 +1,11 @@
-import { Sparkles, Wrench, Phone, ArrowBigRight, icons } from "lucide-react";
+import { Sparkles, Wrench, Phone, ArrowBigRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
-import { href } from "react-router-dom";
 
 export default function Navbar() {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const [navbarHeight, setNavbarHeight] = useState(0);
-    const [changeBackground, setChangeBackground] = useState(false);
     const [inactiveButton, setInactiveButton] = useState(false);
     const [showCircleMenu, setShowCircleMenu] = useState(false);
 
@@ -56,32 +53,6 @@ export default function Navbar() {
         resetTimer();
     }, [])
 
-    // Muda o background do navbar ao scrollar
-    useEffect(() => {
-        if (!navbarHeight || navbarHeight == 0) return;
-
-        const handleScroll = () => {
-            const scrolled = window.scrollY;
-
-            if (scrolled > navbarHeight) {
-                setChangeBackground(true);
-            } else {
-                setChangeBackground(false);
-            }
-        };
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-
-    }, [navbarHeight]);
-
-    // Pega o height do navbar
-    useEffect(() => {
-        if (!containerRef.current) return;
-
-        const height = containerRef.current.offsetHeight;
-        setNavbarHeight(height);
-    }, []);
 
     return (
         <nav

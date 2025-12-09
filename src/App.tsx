@@ -4,7 +4,6 @@ import { BrowserRouter, HashRouter, Routes, Route, Navigate } from "react-router
 const Router = import.meta.env.MODE === "production" ? HashRouter : BrowserRouter; 
 
 import Home from "@/pages/Home.tsx";
-import { useEffect } from "react";
 
 function App() {
     return (

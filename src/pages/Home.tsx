@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar/Index";
 import styles from "./Home.module.css";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ChevronUp, WindIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronUp } from "lucide-react";
 import { useLocation } from "react-router-dom";
 
 export default function Home() {
