@@ -108,9 +108,10 @@
 }
 
 .logo_inactive {  
-    transform: translateY(24px) scale(1.2);
+    transform: translateY(24px) scale(1.2) !important;
     opacity: 0.5;
 }
+
 
 .logo img {
     object-fit: cover;

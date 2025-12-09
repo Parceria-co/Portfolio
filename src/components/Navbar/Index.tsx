@@ -36,9 +36,6 @@ export default function Navbar() {
     const handleInteraction = () => {
         
         resetTimer();
-        if (inactiveButton) return
-
-        alert("botão ta zero");
     }
 
     const links = [
@@ -78,8 +75,8 @@ export default function Navbar() {
                 <li className={styles.li_button}>
                     <button 
                         className={`${styles.logo} ${inactiveButton ? styles.logo_inactive : ""}`}
-                        onMouseEnter={startLoop}
-                        onMouseLeave={stopLoop}
+                        onPointerEnter={startLoop}
+                        onPointerLeave={stopLoop}
                         onClick={handleInteraction}
                     >
                         <img src="/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
