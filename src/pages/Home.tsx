@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar/Index";
 import styles from "./Home.module.css";
 import { useEffect, useRef, useState } from "react";
-import { ChevronUp } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { ArrowBigRight, ChevronUp, Phone, Sparkles, Wrench } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Home() {
 
@@ -13,6 +13,13 @@ export default function Home() {
     const aboutUsRef = useRef<HTMLDivElement | null>(null);
 
     const location = useLocation();
+
+    const links = [
+        {href: "/servicos", label: "Serviços", icon: <Wrench />},
+        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
+        {href: "/contatos", label: "Contatos", icon: <Phone />},
+        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
+    ];
 
     // Muda o background da sec History
     useEffect(() => {
@@ -26,16 +33,20 @@ export default function Home() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Define o tempo da abertura em 3 segundos
     useEffect(() => {
         const timer = setTimeout(() => setOpening(false), 3000);
         return () => clearTimeout(timer);
     }, [])
 
+    // Remove o scroll após 0.5 segundo, retorna com o scroll após 3 segundos
     useEffect(() => { 
-        document.body.style.overflow = 'hidden',
-        document.documentElement.style.overflow = 'hidden'
+        let timer = setTimeout(() => { 
+            document.body.style.overflow = 'hidden',
+            document.documentElement.style.overflow = 'hidden'
+        }, 500);
 
-        const timer = setTimeout(() => {
+        timer = setTimeout(() => {
             document.body.style.overflow = "auto";
             document.documentElement.style.overflow = "auto";
         }, 3000);
@@ -43,6 +54,8 @@ export default function Home() {
         return () => clearTimeout(timer);
     }, [])
 
+
+    // Remove a seta do AboutUs quando desce o scroll
     useEffect(() => {
         const element = aboutUsRef.current;
         if (!element) return;
@@ -58,6 +71,7 @@ export default function Home() {
         return () => window.removeEventListener("scroll", onScroll) 
     }, [])
 
+    // Remove qualquer texto depois do /home
     useEffect(() => {
         if (window.location.hash) {
             window.history.replaceState(
@@ -68,9 +82,10 @@ export default function Home() {
         }
     }, [location]);
 
+    // Scrolla até o topo
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [location.pathname]);
+    }, []);
 
     return(
         <>
@@ -149,8 +164,22 @@ export default function Home() {
                     </div>
                 </section>
             </main>
+            <footer>
+                <section>
+                    <ul>
+                        {links.map(it => (
+                            <li>
+                                <span className={styles.icon}>{it.icon}</span>
+                                <Link to={it.href}>{it.label}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            </footer>
 
-            <Navbar />
+            <Navbar
+                links={links}
+            />
         </>
     )
 }

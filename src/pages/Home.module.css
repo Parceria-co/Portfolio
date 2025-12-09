@@ -194,3 +194,63 @@ section.highlight > div {
 .highlight .highlight_text {
     color: rgb(230, 157, 63);
 }
+
+footer {
+    background-color: black;
+}
+
+footer > section {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 70px;
+}
+
+footer > section > ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+footer > section > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: auto;
+    width: 80%;
+    cursor: pointer;
+    transition: .3s ease all ;
+    padding: 8px 0;
+
+    position: relative;
+}
+
+footer > section > ul > li:hover {
+    color: rgb(230, 157, 63);
+}
+
+footer > section > ul > li::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 110%;
+    height: 1px;
+    background: rgb(230, 157, 63);
+}
+
+footer > section > ul > li:last-child::after {
+    display: none;
+}
+
+
+footer > section > ul > li > span.icon > svg {
+    height: 40px;
+}
+
+footer > section > ul > li > a {
+    font-size: 24px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}

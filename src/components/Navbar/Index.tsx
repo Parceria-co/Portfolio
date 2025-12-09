@@ -1,8 +1,20 @@
-import { Sparkles, Wrench, Phone, ArrowBigRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type JSX } from "react";
 import styles from "./index.module.css";
+import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+type Link = {
+    href: string;
+    label: string;
+    icon: JSX.Element;
+};
+
+type NavbarProps = {
+    links: Link[];
+}
+
+export default function Navbar({
+    links
+} : NavbarProps) {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -10,6 +22,7 @@ export default function Navbar() {
     const [showCircleMenu, setShowCircleMenu] = useState(false);
 
     const timerRef = useRef<number | null>(null);
+    const navigate = useNavigate();
 
 
     // inicia o loop de chamada
@@ -36,14 +49,11 @@ export default function Navbar() {
     const handleInteraction = () => {
         
         resetTimer();
-    }
+        if(inactiveButton) return;
 
-    const links = [
-        {href: "/servicos", label: "Serviços", icon: <Wrench />},
-        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
-        {href: "/contatos", label: "Contatos", icon: <Phone />},
-        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
-    ];
+        navigate("/")
+        
+    }
 
     // Faz a logo sumir após 5 segundos que abriu a tela
     useEffect(() => {
@@ -57,6 +67,7 @@ export default function Navbar() {
             className={`
                 ${styles.container} 
                 ${!inactiveButton ? styles.background_changed : ""}
+                ${inactiveButton ? styles.nav_inactive : ""}
             `}
         >
             <ul     
@@ -75,8 +86,8 @@ export default function Navbar() {
                 <li className={styles.li_button}>
                     <button 
                         className={`${styles.logo} ${inactiveButton ? styles.logo_inactive : ""}`}
-                        onPointerEnter={startLoop}
-                        onPointerLeave={stopLoop}
+                        onMouseEnter={startLoop}
+                        onMouseLeave={stopLoop}
                         onClick={handleInteraction}
                     >
                         <img src="/ParceriaCompany_black_logo.png" alt="Parceria Company logo" />
