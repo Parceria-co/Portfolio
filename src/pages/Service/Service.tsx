@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar/Index";
 import styles from "./Service.module.css"; 
-import { ChevronDown, ChevronUp } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import SectionMarketing from "./components/SectionMarketing";
 import SectionSales from "./components/SectionSales";
