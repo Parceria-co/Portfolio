@@ -1,8 +1,9 @@
 import Navbar from "@/components/Navbar/Index";
 import styles from "./Home.module.css";
 import { useEffect, useRef, useState } from "react";
-import { ArrowBigRight, ChevronUp, Phone, Sparkles, Wrench } from "lucide-react";
+import {ChevronUp } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { links } from "@/utils/data";
 
 export default function Home() {
 
@@ -13,13 +14,6 @@ export default function Home() {
     const aboutUsRef = useRef<HTMLDivElement | null>(null);
 
     const location = useLocation();
-
-    const links = [
-        {href: "/servicos", label: "Serviços", icon: <Wrench />},
-        {href: "/diferenciais", label: "Diferenciais", icon: <Sparkles/>},
-        {href: "/contatos", label: "Contatos", icon: <Phone />},
-        {href: "/proximos-passos", label: "NextUP", icon: <ArrowBigRight />},
-    ];
 
     // Muda o background da sec History
     useEffect(() => {
@@ -95,7 +89,7 @@ export default function Home() {
                     <p>Parceria Company</p>
                 </div>
             </div>
-            <main>
+            <main className={styles.main}>
                 <section className={styles.banner}>
                     <img draggable={false} src="/assets/florest.jpeg" alt="banner" />
                     <div className={styles.logo}>
@@ -177,9 +171,7 @@ export default function Home() {
                 </section>
             </footer>
 
-            <Navbar
-                links={links}
-            />
+            <Navbar/>
         </>
     )
 }

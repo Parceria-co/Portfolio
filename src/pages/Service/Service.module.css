@@ -1,0 +1,180 @@
+.main {
+    background-color: var(--gold-color);
+    scroll-behavior: smooth; /* animação suave */
+    scroll-snap-type: y mandatory; /* ativa o scroll snap vertical */
+    overflow-y: scroll;
+    height: 100vh; /* garante que o main ocupe toda a tela */
+}
+
+section {
+  scroll-snap-align: start; /* cada section “encaixa” no início da viewport */
+}
+
+.presentation {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin: auto;
+    width: 90%;
+}
+
+.presentation > h1 {
+    color: var(--black-color);
+    filter: drop-shadow(0 0px 10px rgb(0, 0, 0, 0.3));
+    text-align: center;
+}
+
+.presentation > p {
+    color: var(--black-color);
+    text-align: justify;
+}
+
+.divisor {
+    height: 4px;
+    width: 90%;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 50px 0;
+    width: 90%;
+    margin: auto;
+}
+
+.summary > h2 {
+    color: var(--black-color);
+}
+
+.summary > ul {
+    list-style: none;
+}
+
+.summary > ul > li > a {
+    color: var(--black-color);
+    text-decoration: none;
+}
+
+.summary > ul > li > a:hover {
+    font-weight: 600;
+}
+
+.slider {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    scroll-snap-type: x proximity;
+    scroll-behavior: smooth;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+section.full {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    flex: 0 0 100vw;
+    scroll-snap-align: start;
+
+    padding: 50px 0;
+    background: var(--black-color);
+    height: 100vh;
+}
+
+section.full > div {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 90%;
+    margin: 0 auto;
+}
+
+section.full > .wrapper_title > .title_and_button {
+    display: flex;
+    justify-content: space-between;
+}
+
+section.full > .wrapper_title > .title_and_button > h2 {
+    position: relative;
+    width: 60%;
+}
+section.full > .wrapper_title > .title_and_button > h2::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--gold-color);
+}
+
+section.full > .wrapper_title > .title_and_button > button {
+    padding: 8px 16px;
+    width: fit-content;
+    height: fit-content;
+
+    border-radius: 8px;
+    border-top: 1px solid var(--white-color);
+    border-left: 1px solid var(--white-color);
+    border-bottom: 2px solid var(--black-color);
+    border-right: 2px solid var(--black-color);
+
+    cursor: pointer;
+
+    font-weight: 600;
+    font-size: 16px;
+    
+    color: var(--black-color);
+    background-color: var(--gold-color);
+}
+
+section.full > .wrapper_title > .title_and_button > button:hover {
+    border: 1px solid var(--black-color);
+    border-left: 1px solid var(--black-color);
+    border-bottom: 2px solid var(--white-color);
+    border-right: 2px solid var(--white-color);
+}
+
+section.full > .wrapper_title > p,
+section.full > .features > p {
+    text-align: justify;
+}
+
+section.full > .features,
+section.full > .features > div {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 8px;
+}
+
+.highlight_text {
+    color: var(--gold-color);
+}
+
+section.full > .features > h3 {
+    text-align: center;
+}
+
+section.full > .features .icon {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+}
+
+section.full > .features > div > ul {
+    width: 90%;
+    margin: auto;
+}

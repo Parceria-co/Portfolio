@@ -1,20 +1,9 @@
-import { useEffect, useRef, useState, type JSX } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { links } from "@/utils/data"
 
-type Link = {
-    href: string;
-    label: string;
-    icon: JSX.Element;
-};
-
-type NavbarProps = {
-    links: Link[];
-}
-
-export default function Navbar({
-    links
-} : NavbarProps) {
+export default function Navbar() {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -79,7 +68,7 @@ export default function Navbar({
                 {
                     showCircleMenu && links && links.slice(0, 2).map((it, idx) => (
                         <li className={`${styles.item} ${styles["pos"+idx]}`}>
-                            <a href={it.href} title={it.label}>{it.icon}</a>
+                            <Link to={it.href} title={it.label}>{it.icon}</Link>
                         </li>
                     ))
                 }
@@ -96,7 +85,7 @@ export default function Navbar({
                 {
                     showCircleMenu && links && links.slice(2, 4).map((it, idx) => (
                         <li className={`${styles.item} ${styles["pos"+idx]}`}>
-                            <a href={it.href} title={it.label}>{it.icon}</a>
+                            <Link to={it.href} title={it.label}>{it.icon}</Link>
                         </li>
                     ))
                 }

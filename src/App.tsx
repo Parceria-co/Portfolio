@@ -3,7 +3,8 @@ import { BrowserRouter, HashRouter, Routes, Route, Navigate } from "react-router
 
 const Router = import.meta.env.MODE === "production" ? HashRouter : BrowserRouter; 
 
-import Home from "@/pages/Home.tsx";
+import Home from "@/pages/Home/Home";
+import Service from "./pages/Service/Service";
 
 function App() {
     return (
@@ -17,6 +18,12 @@ function App() {
 					path="home"
 					element={ <Home /> }
 				/>
+
+                <Route 
+					path="servicos"
+					element={ <Service /> }
+				/>
+
 
                 {/* <Route 
                     path="/not-found"
