@@ -126,7 +126,7 @@ export default function Service({}) {
                         <ul>
                             {list.map(it => (
                                 <li>
-                                    <a href={it.href} title={it.label}>{it.label}</a>
+                                    <a href={"/servicos" + it.href} title={it.label}>{it.label}</a>
                                 </li>
                             ))}
                         </ul>
