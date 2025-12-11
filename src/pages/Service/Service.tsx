@@ -6,6 +6,7 @@ import SectionSales from "./components/SectionSales";
 import SectionOutsourcedSales from "./components/SectionOutsourcedSales";
 import SectionPartnerReferral from "./components/SectionPartnerReferral";
 import SectionInvestmentTrade from "./components/SectionInvestmentTrade";
+import { useLocation } from "react-router-dom";
 
 export default function Service({}) {
     const list = [
@@ -17,6 +18,10 @@ export default function Service({}) {
     ]
 
     const sliderRef = useRef<HTMLDivElement | null>(null);
+
+    const location = useLocation();
+    console.log(location);
+    
 
     const [isOpenFeature, setIsOpenFeature] = useState({
         sales: false,
@@ -62,49 +67,11 @@ export default function Service({}) {
 
         slider.addEventListener("wheel", handleWheel as EventListener, { passive: false });
 
-        // --- MOBILE touch vertical -> horizontal ---
-        let startY = 0;
-        let startX = 0;
-
-        const onTouchStart = (e: TouchEvent) => {
-            if (!active) return;
-            startY = e.touches[0].clientY;
-            startX = e.touches[0].clientX;
-        };
-
-        const onTouchMove = (e: TouchEvent) => {
-            if (!active) return;
-
-            const deltaY = startY - e.touches[0].clientY;
-            const deltaX = startX - e.touches[0].clientX;
-
-            const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
-
-            const isScrollingInside =
-                !(slider.scrollLeft <= 0 && deltaY < 0) &&
-                !(slider.scrollLeft >= maxScrollLeft && deltaY > 0);
-
-            // se é mais vertical que horizontal → transforma
-            if (Math.abs(deltaY) > Math.abs(deltaX) && isScrollingInside) {
-                e.preventDefault();
-                slider.scrollLeft += deltaY;
-            }
-
-            startY = e.touches[0].clientY;
-            startX = e.touches[0].clientX;
-        };
-
-        slider.addEventListener("touchstart", onTouchStart as EventListener, { passive: false });
-        slider.addEventListener("touchmove", onTouchMove as EventListener, { passive: false });
-
         return () => {
             observer.disconnect();
             slider.removeEventListener("wheel", handleWheel as EventListener);
-            slider.removeEventListener("touchstart", onTouchStart as EventListener);
-            slider.removeEventListener("touchmove", onTouchMove as EventListener);
         };
     }, []);
-
 
     return (
         <>

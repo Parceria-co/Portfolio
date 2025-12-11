@@ -1,7 +1,7 @@
 
-import { BrowserRouter, HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-const Router = import.meta.env.MODE === "production" ? HashRouter : BrowserRouter; 
+// const Router = import.meta.env.MODE === "production" ? HashRouter : BrowserRouter; 
 
 import Home from "@/pages/Home/Home";
 import Service from "./pages/Service/Service";
