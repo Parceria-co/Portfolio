@@ -6,51 +6,25 @@ import SectionSales from "./components/SectionSales";
 import SectionOutsourcedSales from "./components/SectionOutsourcedSales";
 import SectionPartnerReferral from "./components/SectionPartnerReferral";
 import SectionInvestmentTrade from "./components/SectionInvestmentTrade";
+import SectionCases from "./components/SectionCases";
+import SectionDifferentials from "./components/SectionDifferentials";
+import { useLocation } from "react-router-dom";
 
 export default function Service({}) {
     const list = [
-        {href: "#vendas-sites", label: "Vendas de Sites"},
-        {href: "#marketing", label: "Marketing"},
-        {href: "#vendas-tercerizadas", label: "Vendas Tercerizadas"},
-        {href: "#indicacoes", label: "Indicação de Parceiros"},
-        {href: "#investimento", label: "Consultoria de Investimento e Trade"},
-        {href: "#differentials", label: "Diferenciais"}
+        {href: "/servicos/#vendas-sites", label: "Vendas de Sites"},
+        {href: "/servicos/#marketing", label: "Marketing"},
+        {href: "/servicos/#vendas-tercerizadas", label: "Vendas Tercerizadas"},
+        {href: "/servicos/#indicacoes", label: "Indicação de Parceiros"},
+        {href: "/servicos/#investimento", label: "Consultoria de Investimento e Trade"},
+        {href: "/servicos/#differentials", label: "Diferenciais"},
+        {href: "/servicos/#cases", label: "Cases"},
     ]
-
-    const [sliderPhase, setSliderPhase] = useState<"start" | "middle" | "end">("start");
-
-    const differentials = [
-        {
-            title: "Propostas rápidas e objetivas",
-            description:
-            "Comunicação clara desde o primeiro contato, sem excesso de etapas ou promessas irreais."
-        },
-        {
-            title: "Visão estratégica com foco no longo prazo",
-            description:
-            "Pensamos além da entrega imediata, estruturando soluções que acompanham o crescimento do negócio."
-        },
-        {
-            title: "Parceria verdadeira e relacionamento contínuo",
-            description:
-            "Atuamos lado a lado com o cliente, buscando evolução constante e fidelização."
-        },
-        {
-            title: "Entregas acessíveis e sob medida",
-            description:
-            "Cada projeto é adaptado à realidade do cliente, equilibrando custo, qualidade e necessidade."
-        },
-        {
-            title: "Soluções práticas, inovadoras e orientadas a resultado",
-            description:
-            "Aplicamos ideias que funcionam na prática, com foco em conversão, eficiência e impacto real."
-        }
-    ];
-
 
     const defaultMessage = "Olá, tudo bem? Gostaria de saber mais sobre";
 
     const sliderRef = useRef<HTMLDivElement | null>(null);
+    const location = useLocation();
 
     const [isOpenFeature, setIsOpenFeature] = useState({
         sales: false,
@@ -67,77 +41,23 @@ export default function Service({}) {
 
         window.open(`${whatsappLink}?text=${encodeURIComponent(message)}`, "_blank");
     }
-
+    
+    // Limpa a url
     useEffect(() => {
-        const slider = sliderRef.current;
-        if (!slider) return;
-        
-        let active = false;
-        
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                active = entry.isIntersecting;
-            },
-            { threshold: 0.9 }
-        );
-        
-        observer.observe(slider);
-
-        const onScroll = () => {
-            const index = Math.round(slider.scrollLeft / slider.clientWidth);
-            const lastIndex = slider.children.length - 1;
-
-            // fst_section
-            if (index === 0) {
-                setSliderPhase("start"); // fst visível
-            } else {
-                setSliderPhase("middle"); // fst escondida
-            }
-
-            // section de baixo
-            if (index === lastIndex) {
-                setSliderPhase("end"); // bottom visível
-            }
-        };
-
-        const onWheel = (e: WheelEvent) => {
-            if (!active) return;
-
-            const slider = sliderRef.current;
-            if (!slider) return;
-
-            const index = Math.round(slider.scrollLeft / slider.clientWidth);
-            const lastIndex = slider.children.length - 1;
-
-            const goingDown = e.deltaY > 0;
-            const goingUp = e.deltaY < 0;
-
-            // libera Y somente:
-            if (index === 0 && goingUp) return;
-            if (index === lastIndex && goingDown) return;
-
-            e.preventDefault();
-            slider.scrollLeft += e.deltaY * 9;
-        };
-        
-        slider.addEventListener("scroll", onScroll);
-        slider.addEventListener("wheel", onWheel, { passive: false });
-
-        return () => {
-            observer.disconnect();
-            slider.removeEventListener("wheel", onWheel);
-            slider.removeEventListener("scroll", onScroll);
-        };
-
-    }, []);
+        if (window.location.hash) {
+            window.history.replaceState(
+                {},
+                "",
+                window.location.pathname + window.location.search
+            );
+        }
+    }, [location]);
+    
 
     return (
         <>
             <main className={styles.main}>
-                <section className={`
-                    ${styles.fst_section}
-                    ${sliderPhase !== "start" ? styles.hidden : ""}
-                `}>
+                <section className={styles.fst_section}>
                     <div className={styles.presentation}>
                         <h1>Serviços</h1>
                         <p>
@@ -154,7 +74,8 @@ export default function Service({}) {
                         <ul>
                             {list.map(it => (
                                 <li>
-                                    <a href={"/servicos" + it.href} title={it.label}>{it.label}</a>
+                                    <a 
+                                        href={it.href} title={it.label}>{it.label}</a>
                                 </li>
                             ))}
                         </ul>
@@ -205,34 +126,10 @@ export default function Service({}) {
                         sendMessage={handleSendMessageWhatsApp}
                     />
                 </section>
-                <div className={styles.divisor}></div>
-                <section
-                    id="differentials"
-                    className={`
-                        ${styles.differentials}
-                        ${sliderPhase === "end" ? styles.visible : styles.super_hidden}
-                    `}
-                >
-                    <div>
-                        <h2>Diferencias</h2>
-                        <ul className={styles.grid}>
-                            {differentials.map((item) => (
-                            <li key={item.title} className={styles.card}>
-                                <h3>{item.title}</h3>
-                                <p>{item.description}</p>
-                            </li>
-                            ))}
-                        </ul>
-
-                    </div>
-                        
-                </section>
-                <section className={styles.cases}>
-                    <div>
-                        <h2>Cases</h2>
-                    </div>
-                </section>
-            </main>
+                <span className={styles.span}>Role para o lado</span>
+                <SectionDifferentials />
+                <SectionCases />
+                </main>
             <Navbar/>
         </>
     )
