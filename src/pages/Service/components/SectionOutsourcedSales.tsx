@@ -2,13 +2,13 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import styles from "../Service.module.css";
 import type { SectionProps } from "./SectionProps";
 
-export default function SectionOutsourcedSales({ isOpen, setIsOpen }: SectionProps) {
+export default function SectionOutsourcedSales({ isOpen, setIsOpen, message, sendMessage }: SectionProps) {    
     return (
         <section className={styles.full} id="vendas-tercerizadas">
             <div className={styles.wrapper_title}>
                 <div className={styles.title_and_button}>
                     <h2>Vendas Terceirizadas</h2>
-                    <button onClick={() => console.log("FOI")}>Saiba Mais</button>
+                    <button onClick={() => sendMessage(message)}>Saiba Mais</button>
                 </div>
                 <p>
                     Ajudamos marcas a vender mais através de processos estratégicos,

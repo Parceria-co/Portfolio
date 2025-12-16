@@ -2,7 +2,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import styles from "../Service.module.css";
 import type { SectionProps } from "./SectionProps";
 
-export default function SectionMarketing({isOpen, setIsOpen}: SectionProps) {
+export default function SectionMarketing({isOpen, setIsOpen, message, sendMessage }: SectionProps) {    
     return (
         <section
             className={styles.full}
@@ -11,7 +11,7 @@ export default function SectionMarketing({isOpen, setIsOpen}: SectionProps) {
             <div className={styles.wrapper_title}>
                 <div className={styles.title_and_button}>
                     <h2>Marketing</h2>
-                    <button onClick={() => console.log("FOI")}>Saiba Mais</button>
+                    <button onClick={() => sendMessage(message)}>Saiba Mais</button>
                 </div>
                 <p>
                     Trabalhamos com <span className={styles.highlight_text}>otimização 

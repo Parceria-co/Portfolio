@@ -2,13 +2,13 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import styles from "../Service.module.css";
 import type { SectionProps } from "./SectionProps";
 
-export default function SectionInvestmentTrade({ isOpen, setIsOpen }: SectionProps) {
+export default function SectionInvestmentTrade({ isOpen, setIsOpen, message, sendMessage }: SectionProps) {
     return (
         <section className={styles.full} id="investimento">
             <div className={styles.wrapper_title}>
                 <div className={styles.title_and_button}>
                     <h2>Consultoria de Investimento e Trade</h2>
-                    <button onClick={() => console.log("FOI")}>Saiba Mais</button>
+                    <button onClick={() => sendMessage(message)}>Saiba Mais</button>
                 </div>
                 <p>
                     Orientação completa para quem quer evoluir no mercado financeiro, com 
