@@ -1,0 +1,40 @@
+/* ScreenWarning.module.css */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    background: #fff;
+    color: #000;
+    max-width: 420px;
+    width: 90%;
+    padding: 32px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.box h2 {
+    margin-bottom: 12px;
+}
+
+.box p {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.box button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}

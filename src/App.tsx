@@ -8,10 +8,15 @@ import Service from "./pages/Service/Service";
 import Differential from "./pages/Differential/Differential";
 import Contact from "./pages/Contact/Contact";
 import NextSteps from "./pages/NextSteps/NextSteps";
+import { useScreenWarning } from "./hook/useScreenWarning";
+import ScreenWarning from "./components/ScreenWarning/Index";
 
 function App() {
+    const { showWarning, acceptWarning } = useScreenWarning();
+
     return (
         <Router>
+            {showWarning && <ScreenWarning onAccept={acceptWarning} />}
             <Routes>
                 <Route
                     path=""
