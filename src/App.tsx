@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import Home from "@/pages/Home/Home";
 import Service from "./pages/Service/Service";
+import Differentials from "./pages/Differential/Differentials";
 
 function App() {
     return (
@@ -22,6 +23,11 @@ function App() {
                 <Route 
 					path="servicos"
 					element={ <Service /> }
+				/>
+
+                <Route 
+					path="diferenciais"
+					element={ <Differentials /> }
 				/>
 
 
