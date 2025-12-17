@@ -1,0 +1,116 @@
+.main {
+    background-color: var(--white-color);
+    min-height: 100vh;
+}
+
+/* HERO */
+.hero {
+    background-color: var(--white-color);
+    padding: 50px 0;
+}
+
+.heroContent {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.heroContent h1 {
+    color: var(--gold-color);
+}
+
+.heroContent p {
+    color: var(--black-color);
+}
+
+/* CONTAINER PADRÃO */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* LOCALIZAÇÃO */
+.location {
+    background-color: var(--white-color);
+    padding: 50px 0;
+}
+
+.location h2 {
+    color: var(--black-color);
+}
+
+.location p {
+    color: var(--black-color);
+    text-align: justify;
+}
+
+/* CONTATO */
+.contact {
+    background-color: var(--black-color);
+    padding: 80px 0 120px;
+}
+
+.contact h2 {
+    color: var(--white-color);
+    margin-bottom: 24px;
+}
+
+/* LISTA DE CONTATO */
+.contactList {
+    list-style: none;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contactList li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    padding-left: 16px;
+    border-left: 3px solid var(--gold-color);
+}
+
+.contactList span {
+    font-size: 14px;
+    color: var(--gold-color);
+    /* opacity: 0.7; */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contactList a {
+    color: var(--white-color);
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contactList a:hover {
+    color: var(--gold-color);
+}
+
+.divisor {
+    height: 4px;
+    width: 90%;
+    background-color: var(--gold-color);
+    margin: auto;
+}
+
+.highlight_txt {
+    color: var(--gold-color);
+    font-weight: 600;
+}

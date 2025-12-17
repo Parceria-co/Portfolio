@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 
 import Home from "@/pages/Home/Home";
 import Service from "./pages/Service/Service";
-import Differentials from "./pages/Differential/Differentials";
+import Differential from "./pages/Differential/Differential";
+import Contact from "./pages/Contact/Contact";
+import NextSteps from "./pages/NextSteps/NextSteps";
 
 function App() {
     return (
@@ -27,19 +29,29 @@ function App() {
 
                 <Route 
 					path="diferenciais"
-					element={ <Differentials /> }
+					element={ <Differential /> }
+				/>
+                
+                <Route 
+					path="contatos"
+					element={ <Contact /> }
 				/>
 
+                <Route 
+					path="proximos-passos"
+					element={ <NextSteps /> }
+				/>
 
                 {/* <Route 
                     path="/not-found"
                     element={ <NotFound /> }
-                />
+                />*/}
 
                 <Route 
                     path="*" 
-                    element={ <Navigate to="/not-found" replace /> }
-                /> */}
+                    // element={ <Navigate to="/not-found" replace /> }
+                    element={ <Navigate to="/home" replace /> }
+                /> 
 
             </Routes>
         </Router>    

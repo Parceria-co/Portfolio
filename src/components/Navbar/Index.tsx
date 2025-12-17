@@ -3,7 +3,11 @@ import styles from "./index.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { links } from "@/utils/data"
 
-export default function Navbar() {
+interface NavbarProps {
+    fixedOn?: boolean
+}
+
+export default function Navbar({ fixedOn }: NavbarProps) {
 
     const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -16,15 +20,25 @@ export default function Navbar() {
 
     // inicia o loop de chamada
     const startLoop = () => {
+        if (fixedOn) return;
+
+        if (timerRef.current) {
+            clearTimeout(timerRef.current);
+            timerRef.current = null;
+        }
+        
         setInactiveButton(false);
         setShowCircleMenu(true);
     };
 
      const stopLoop = () => {
+        if (fixedOn) return;
         resetTimer();
     };
 
     const resetTimer = () => {
+        if (fixedOn) return;
+
         if (timerRef.current) clearTimeout(timerRef.current);
         setInactiveButton(false);
         setShowCircleMenu(true);
@@ -49,6 +63,22 @@ export default function Navbar() {
         resetTimer();
     }, [])
 
+    useEffect(() => {
+        if (fixedOn) {
+            // força navbar ativa
+            if (timerRef.current) {
+                clearTimeout(timerRef.current);
+                timerRef.current = null;
+            }
+
+            setInactiveButton(false);
+            setShowCircleMenu(true);
+        } else {
+            resetTimer()
+        }
+    }, [fixedOn]);
+
+
 
     return (
         <nav
@@ -66,8 +96,16 @@ export default function Navbar() {
                 `}
             >
                 {
-                    showCircleMenu && links && links.slice(0, 2).map((it, idx) => (
-                        <li className={`${styles.item} ${styles["pos"+idx]}`}>
+                    links && links.slice(0, 2).map((it, idx) => (
+                        <li 
+                            className={`
+                                ${styles.item} 
+                                ${styles["pos"+idx]}
+                                ${!showCircleMenu ? styles.hidden : ""}
+                            `}
+                            onMouseEnter={startLoop}
+                            onMouseLeave={stopLoop}
+                        >
                             <Link to={it.href} title={it.label}>{it.icon}</Link>
                         </li>
                     ))
@@ -83,8 +121,16 @@ export default function Navbar() {
                     </button>
                 </li>
                 {
-                    showCircleMenu && links && links.slice(2, 4).map((it, idx) => (
-                        <li className={`${styles.item} ${styles["pos"+idx]}`}>
+                    links && links.slice(2, 4).map((it, idx) => (
+                        <li 
+                            className={`
+                                ${styles.item} 
+                                ${styles["pos"+idx]}
+                                ${!showCircleMenu ? styles.hidden : ""}
+                            `}
+                            onMouseEnter={startLoop}
+                            onMouseLeave={stopLoop}
+                        >
                             <Link to={it.href} title={it.label}>{it.icon}</Link>
                         </li>
                     ))

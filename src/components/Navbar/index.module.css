@@ -42,7 +42,8 @@
 
 .item {
     opacity: 1;
-    transition: 0.4s ease;
+    /* transition: 0.4s ease; */
+    pointer-events: auto;
     /* position: absolute; */
 }
 
@@ -78,6 +79,11 @@
 .item > a::before {
     display: block;
     content: "";
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .circle_active .item {
